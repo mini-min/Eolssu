@@ -31,6 +31,10 @@ let package = Package(
                 .landscapeRight,
                 .landscapeLeft,
                 .portraitUpsideDown(.when(deviceFamilies: [.pad]))
+            ],
+            capabilities: [
+                .microphone(purposeString: "This app requires access to the microphone to record your voice for speech recognition."),
+                .speechRecognition(purposeString: "This app requires access to speech recognition to convert your voice into text.")
             ]
         )
     ],
@@ -40,5 +44,5 @@ let package = Package(
             path: "."
         )
     ],
-    swiftLanguageVersions: [.v6]
+    swiftLanguageVersions: [.version("6")]
 )
