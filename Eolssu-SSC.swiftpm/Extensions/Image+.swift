@@ -3,6 +3,10 @@ import SwiftUI
 enum ImageName: String {
     case main = "eolssu_main_logo"
     
+    // Image Assets
+    case rotate = "img_rotate"
+    case janggu = "img_janggu"
+    
     // Letter Assets
     case dungLetter = "eolssu_dung_color"
     case kungLetter = "eolssu_kung_color"
@@ -20,4 +24,6 @@ enum ImageName: String {
 
 extension Image {
     static let main = Image(ImageName.main.rawValue)
+    static let rotate = Image(ImageName.rotate.rawValue)
+    static let janggu = Image(ImageName.janggu.rawValue)
 }
