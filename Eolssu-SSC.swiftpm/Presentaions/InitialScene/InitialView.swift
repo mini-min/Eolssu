@@ -53,12 +53,11 @@ struct InitialView: View {
                                     .frame(width: 50)
                             })
                             .tint(.eolssuBrown)
-                            .contentShape(Circle())
                         }
                     }
                     
                     if screenState == .final {
-                        Text("EOLSSU - Learn to Korean traditional rhythm, JangDan")
+                        Text("EOLSSU - Learn to Korean traditional rhythm, Jang-Dan")
                             .font(.myFont(size: 30))
                             .foregroundStyle(Color.eolssuBlack)
                             .padding(.top, 50)
@@ -109,17 +108,18 @@ struct InitialView: View {
                         .opacity(screenState == .final ? 0 : 1)
                 }
                 .padding()
-            }
-        }
-        .onTapGesture {
-            withAnimation(.easeInOut(duration: 0.5)) {
-                if let nextState = screenState.next { 
-                    screenState = nextState 
-                    
-                    if let sound = screenState.sound?.rawValue {
-                        SoundManager.shared.playSound(name: sound)
+                .onTapGesture {
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                        if let nextState = screenState.next { 
+                            screenState = nextState 
+                            
+                            if let sound = screenState.sound?.rawValue {
+                                SoundManager.shared.playSound(name: sound)
+                            }
+                        }
                     }
                 }
+
             }
         }
     }

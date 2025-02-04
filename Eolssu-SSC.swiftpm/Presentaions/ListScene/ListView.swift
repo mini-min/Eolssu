@@ -3,7 +3,7 @@ import SwiftUI
 struct ListView: View {
     @State private var selectedSegment: Segment
     
-    enum Segment: Int {
+    enum Segment: Int, CaseIterable {
         case learning = 0
         case creating = 1
     }
@@ -14,24 +14,29 @@ struct ListView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                switch selectedSegment {
-                case .learning:
-                    LearningListView()
-                case .creating:
-                    CreatingListView()
+            ZStack {
+                Color.eolssuBackground
+                    .ignoresSafeArea()
+                
+                VStack {
+                    switch selectedSegment {
+                    case .learning:
+                        LearningListView()
+                    case .creating:
+                        CreatingListView()
+                    }
                 }
             }
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Picker("Options", selection: $selectedSegment) {
-                    Text("Learning").tag(selectedSegment)
-                    Text("Creating").tag(selectedSegment)
+                    Text("Learning").tag(Segment.learning)
+                    Text("Creating").tag(Segment.creating)
                 }
                 .pickerStyle(SegmentedPickerStyle())
-                .frame(maxWidth: 200)
-            } 
+                .frame(maxWidth: 250)
+            }
         }
     }
 }
