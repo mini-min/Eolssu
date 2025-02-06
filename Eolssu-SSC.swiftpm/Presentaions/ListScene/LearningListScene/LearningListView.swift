@@ -3,18 +3,17 @@ import SwiftUI
 struct LearningListView: View {
     
     @State private var selectedJangdan = 0
+    @State private var isDetailViewVisible = false
     @State private var offset = CGFloat.zero
     
     private let jangdans = JangDanType.allCases
     
     var body: some View {
         ZStack {
-            Color.eolssuBackground
-            
-            VStack {
+            VStack(spacing: 50) {
                 Text("“Please select the rhythm pattern you want to learn.”")
                     .font(.myFont(size: 32))
-                    .foregroundColor(.eolssuBrown)
+                    .foregroundColor(.white)
                 
                 GeometryReader { geometry in
                     let width = geometry.size.width * 0.7
@@ -22,10 +21,17 @@ struct LearningListView: View {
                     LazyHStack(spacing: 30) {
                         Color.clear.frame(width: geometry.size.width * 0.15 - 30)
                         ForEach(0..<jangdans.count, id: \.self) { index in
-                            LearningCard(text: jangdans[index].title)
+                            LearningCard(jangdan: jangdans[index])
                                 .frame(width: width)
                                 .scaleEffect((index % jangdans.count) == selectedJangdan ? 1 : 0.85)
+                                .opacity(index == selectedJangdan ? 1 : 0.5)
                                 .padding(.vertical)
+                                .onTapGesture {
+                                    SoundManager.shared.playSound(name: SoundName.eolssu.rawValue)
+                                    withAnimation(.spring) {
+                                        isDetailViewVisible = true
+                                    }
+                                }
                         }
                     }
                     .offset(x: CGFloat(-selectedJangdan) * (width + 30) + offset)
@@ -45,19 +51,22 @@ struct LearningListView: View {
                             }
                     )
                 }
-                .frame(height: 350)
+                .frame(height: 500)
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
                 HStack {
                     ForEach(0..<jangdans.count, id: \.self) { index in
                         Circle()
                             .frame(width: 10)
-                            .foregroundColor(index == selectedJangdan ? .primary : .secondary.opacity(0.5))
+                            .foregroundColor(index == selectedJangdan ? .white : .eolssuGray2)
                             .onTapGesture { selectedJangdan = index }
                     }
                 }
             }
-            
+            if isDetailViewVisible {
+                LearningDetailView()
+                    .transition(.scale)
+            }
         }
     }
 }

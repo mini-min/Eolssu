@@ -15,8 +15,12 @@ struct ListView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.eolssuBackground
-                    .ignoresSafeArea()
+                LinearGradient(
+                    gradient: Gradient(colors: [.eolssuBrown, .eolssuDarkBrown]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea()
                 
                 VStack {
                     switch selectedSegment {

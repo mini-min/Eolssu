@@ -6,6 +6,7 @@ enum ImageName: String {
     // Image Assets
     case rotate = "img_rotate"
     case janggu = "img_janggu"
+    case janggu2 = "img_janggu2"
     
     // Letter Assets
     case dungLetter = "eolssu_dung_color"
@@ -26,4 +27,5 @@ extension Image {
     static let main = Image(ImageName.main.rawValue)
     static let rotate = Image(ImageName.rotate.rawValue)
     static let janggu = Image(ImageName.janggu.rawValue)
+    static let janggu2 = Image(ImageName.janggu2.rawValue)
 }

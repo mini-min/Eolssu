@@ -68,7 +68,7 @@ struct InitialView: View {
                             .padding(.top, 75)
                           
                         if screenState.rawValue >= 1 {
-                            Text("“Janggu” is a traditional Korean drum for playing “Jangdan” like an hourglass.")
+                            Text("“Janggu” is a traditional Korean drum for playing “Jang-Dan” looks like an hourglass.")
                         }
                         
                         if screenState.rawValue >= 2 {
