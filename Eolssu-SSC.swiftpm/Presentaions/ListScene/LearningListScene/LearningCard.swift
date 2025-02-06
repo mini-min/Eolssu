@@ -12,13 +12,14 @@ struct LearningCard: View {
             
             VStack(alignment: .leading, spacing: 40) {
                 HStack(alignment: .bottom, spacing: 25) {
-                    Text(jangdan.korTitle)
-                        .font(.myFont(size: 90))
-                        .asColor("jangdan.korTitle", with: .eolssuPink)
+                    EolssuComponentFactory.shared.makeEollsuText(
+                        jangdan.korTitle,
+                        jangdan.korTitle.character(at: 1).map { String($0) } ?? "",
+                        with: .eolssuPink
+                    ).font(.myFont(size: 90))
                     
                     Text(jangdan.engTitle)
                         .font(.myFont(size: 40))
-                        .asColor("jangdan.korTitle", with: .eolssuPink)
                 }
                 
                 Text(bulletArray: jangdan.description)
@@ -54,6 +55,5 @@ struct LearningCard: View {
 }
 
 #Preview {
-    let dummyData = JangDanType.jajinmori
     LearningCard(jangdan: JangDanType.jajinmori)
 }

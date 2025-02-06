@@ -1,12 +1,18 @@
 import SwiftUI
 
-protocol EolssuComponentFactoryProtocol {
-    associatedtype Component: View
+final class EolssuComponentFactory {
     
-    func makeEolssuButton(title: String, action: @escaping () -> Void) -> Component
-}
-
-struct EolssuComponentFactory: EolssuComponentFactoryProtocol {
+    static let shared = EolssuComponentFactory()
+    private init() {}
+    
+    func makeEollsuText(
+        _ orignialText: String,
+        _ targetText: String,
+        with color: Color
+    ) -> some View {
+        return EolssuText(originalText: orignialText, targetText: targetText, targetColor: color)
+    }
+    
     
     func makeEolssuButton(
         title: String,
