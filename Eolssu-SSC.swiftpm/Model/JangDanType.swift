@@ -99,4 +99,50 @@ enum JangDanType: CaseIterable {
             return 2
         }
     }
+    
+    var rhythms: [RhythmType] {
+        switch self {
+        case .jajinmori:
+            return [
+                .dung, .rest, .rest,
+                .kung, .rest, .rest,
+                .kung, .rest, .deok,
+                .kung, .rest, .rest
+            ]
+        case .semachi:
+            return [
+                .dung, .rest, .rest,
+                .dung, .rest, .deok,
+                .kung, .deok, .rest
+            ]
+        case .gutgeori:
+            return [
+                .dung, .rest, .gideok,
+                .kung, .deoreo, .rest,
+                .kung, .rest, .gideok,
+                .kung, .deoreo, .rest
+            ]
+        case .jungjungmori:
+            return [
+                .dung, .rest, .deok,
+                .kung, .deok, .deok,
+                .kung, .kung, .deok,
+                .kung, .rest, .kung
+            ]
+        case .hwimori:
+            return [
+                .dung, .rest,
+                .deok, .deok,
+                .kung, .deok,
+                .kung, .rest
+            ]
+        case .eotmori:
+            return [
+                .dung, .rest, .deok,
+                .kung, .kung,
+                .kung, .rest, .deok,
+                .kung, .rest
+            ]
+        }
+    }
 }

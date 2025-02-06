@@ -67,7 +67,7 @@ struct LearningListView: View {
                 }
             }
             if isDetailViewVisible {
-                LearningDetailView()
+                LearningDetailView(jangdan: jangdans[selectedJangdan])
                     .transition(.scale)
             }
         }
