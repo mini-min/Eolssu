@@ -8,7 +8,7 @@ struct LearningDetailView: View {
             Color.eolssuBackground
                 .ignoresSafeArea()
             
-            VStack {
+            VStack(spacing: 30) {
                 HStack {
                     Text(jangdan.korTitle)
                     Text(jangdan.engTitle)
@@ -44,12 +44,25 @@ struct LearningDetailView: View {
                 .frame(width: CGFloat(jangdan.beat * 270), height: 90)
                 .padding()
                 
-                //PerformJangguView()
+                HStack(alignment: .bottom) {
+                    ForEach(jangdan.rhythms, id: \.self) { rhythm in
+                        if rhythm == .rest { Spacer() }
+                        rhythm.letterImage
+                            .renderingMode(.template)
+                            .foregroundColor(.eolssuGray2)
+                            .scaledToFit()
+                    }
+                }
+                .frame(width: CGFloat(jangdan.beat * 290), height: 150)
+                
+                PerformJangguView()
+                    .padding([.leading, .trailing], 30)
             }
         }
+        .toolbar(.hidden, for: .navigationBar)
     }
 }
 
 #Preview {
-    LearningDetailView(jangdan: .jajinmori)
+    LearningDetailView(jangdan: .jungjungmori)
 }
