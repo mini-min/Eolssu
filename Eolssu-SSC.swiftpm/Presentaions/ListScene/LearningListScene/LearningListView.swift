@@ -7,7 +7,6 @@ struct LearningListView: View {
     @State private var offset = CGFloat.zero
     
     private let jangdans = JangDanType.allCases
-    private let ttsManager = TTSManager()
     
     var body: some View {
         ZStack {
@@ -45,7 +44,7 @@ struct LearningListView: View {
                             .onEnded { value in
                                 let predictedIndex = selectedJangdan - Int((value.predictedEndTranslation.width / width).rounded())
                                 let convertIndex = (predictedIndex + jangdans.count) % jangdans.count
-                                ttsManager.speak(text: jangdans[convertIndex].korTitle)
+                                TTSManager.shared.speak(text: jangdans[convertIndex].korTitle)
                                 
                                 withAnimation(.spring()) {
                                     selectedJangdan = convertIndex

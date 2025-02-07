@@ -8,7 +8,7 @@ final class SoundManager {
     private init() {}
     
     func playSound(name fileName: String) {
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: "wav") else { return }
+        guard let url = Bundle.main.url(forResource: fileName, withExtension: "mp3") else { return }
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)

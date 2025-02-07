@@ -3,6 +3,9 @@ import SwiftUI
 
 final class TTSManager {
     private let synthesizer = AVSpeechSynthesizer()
+    static let shared = TTSManager()
+
+    private init() {}
     
     func speak(
         text: String,
