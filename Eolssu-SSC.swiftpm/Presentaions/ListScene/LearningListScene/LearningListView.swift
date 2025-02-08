@@ -46,7 +46,7 @@ struct LearningListView: View {
                                 let convertIndex = (predictedIndex + jangdans.count) % jangdans.count
                                 TTSManager.shared.speak(text: jangdans[convertIndex].korTitle)
                                 
-                                withAnimation(.spring()) {
+                                withAnimation(.spring) {
                                     selectedJangdan = convertIndex
                                     offset = 0
                                 }
@@ -66,8 +66,12 @@ struct LearningListView: View {
                 }
             }
             if isDetailViewVisible {
-                LearningDetailView(jangdan: jangdans[selectedJangdan])
-                    .transition(.scale)
+                LearningDetailView(
+                    isDetailViewVisible: $isDetailViewVisible, 
+                    jangdan: jangdans[selectedJangdan]
+                )
+                .toolbar(.hidden, for: .navigationBar)
+                .transition(.scale)
             }
         }
     }

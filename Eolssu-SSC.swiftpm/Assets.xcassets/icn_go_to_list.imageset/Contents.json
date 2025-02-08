@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "icn_go_to_list.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct LearningDetailView: View {
+    @Binding var isDetailViewVisible: Bool
     var jangdan: JangDanType
     
     var body: some View {
@@ -9,12 +10,42 @@ struct LearningDetailView: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 30) {
+                
                 HStack {
-                    Text(jangdan.korTitle)
-                    Text(jangdan.engTitle)
+                    Button(action: {
+                        withAnimation(.spring()) {
+                            isDetailViewVisible = false 
+                        }
+                    }, label: {
+                        Image.list
+                    })
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Text(jangdan.korTitle)
+                        Text(jangdan.engTitle)
+                    }
+                    
+                    Spacer()
+                    
+                    HStack(spacing: 20) {
+                        Button(action: {
+                            // 노래가 재생
+                        }, label: {
+                            Image(systemName: "hearingdevice.ear")
+                        })
+                        
+                        Button(action: {
+                            // 연주가 시작
+                        }, label: {
+                            Image(systemName: "play")
+                        })
+                    }
                 }
                 .foregroundStyle(Color.eolssuBrown)
                 .font(.myFont(size: 24))
+                .padding(30)
                 
                 
                 HStack(spacing: 0) {
@@ -59,10 +90,9 @@ struct LearningDetailView: View {
                     .padding([.leading, .trailing], 30)
             }
         }
-        .toolbar(.hidden, for: .navigationBar)
     }
 }
 
 #Preview {
-    LearningDetailView(jangdan: .jungjungmori)
+    LearningDetailView(isDetailViewVisible: .constant(true), jangdan: .jungjungmori)
 }

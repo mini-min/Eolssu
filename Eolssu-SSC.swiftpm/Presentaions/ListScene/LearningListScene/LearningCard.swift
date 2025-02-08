@@ -19,6 +19,7 @@ struct LearningCard: View {
                     ).font(.myFont(size: 90))
                     
                     Text(jangdan.engTitle)
+                        .foregroundStyle(Color.eolssuBlack)
                         .font(.myFont(size: 40))
                 }
                 
