@@ -27,7 +27,7 @@ struct ListView: View {
                     case .learning:
                         LearningListView()
                     case .creating:
-                        CreatingListView()
+                        CreatingView()
                     }
                 }
             }

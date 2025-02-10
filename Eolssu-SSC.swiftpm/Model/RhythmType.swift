@@ -1,7 +1,12 @@
 import SwiftUI
 
-enum RhythmType {
-    case dung, kung, deok, gideok, deoreo, rest
+enum RhythmType: String, CaseIterable {
+    case dung = "Dung"
+    case kung = "Kung"
+    case deok = "Deok"
+    case gideok = "Gideok"
+    case deoreo = "Deoreoreoreo"
+    case rest = ""
     
     var letterImage: Image {
         switch self {
@@ -25,13 +30,31 @@ enum RhythmType {
         }
     }
     
-//    var description: String {
-//        switch self {
-//        case .dung:
-//        case .kung: Image(ImageName.kungIcon.rawValue)
-//        case .deok: Image(ImageName.deokIcon.rawValue)
-//        case .gideok: Image(ImageName.gideokIcon.rawValue)
-//        case .deoreo: Image(ImageName.deoreoIcon.rawValue)
-//        }
-//    }
+    var description: String {
+        switch self {
+        case .dung:
+            return "Deep and powerful sound made by striking both drumheads simultaneously."
+        case .kung: 
+            return "Low and soft sound made by hitting left side."
+        case .deok: 
+            return "Bright and soft sound made by hitting right side."
+        case .gideok:
+            return "Quick double hit on right side, sounding like “Deok-Deok.”"
+        case .deoreo: 
+            return "Rapid rolling or trilling sound created by continuously striking right side."
+        case .rest: 
+            return ""
+        }
+    }
+    
+    var sound: String {
+        switch self {
+        case .dung: SoundName.dung.rawValue
+        case .kung: SoundName.kung.rawValue
+        case .deok: SoundName.deok.rawValue
+        case .gideok: SoundName.gideok.rawValue
+        case .deoreo: SoundName.deoreo.rawValue
+        case .rest: ""
+        }
+    }
 }
