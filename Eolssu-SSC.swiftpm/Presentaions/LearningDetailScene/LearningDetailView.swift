@@ -48,30 +48,11 @@ struct LearningDetailView: View {
                 .padding(30)
                 
                 
-                HStack(spacing: 0) {
-                    ForEach(0..<jangdan.beat, id: \.self) { outIndex in
-                        GeometryReader { geometry in
-                            ZStack {
-                                Rectangle()
-                                    .stroke(Color.eolssuBrown, lineWidth: 5)
-                                
-                                HStack(spacing: 0) {
-                                    ForEach(0..<jangdan.sobak, id: \.self) { inIndex in
-                                        let rhythmIndex = outIndex * jangdan.sobak + inIndex
-                                        
-                                        Rectangle()
-                                            .stroke(Color.eolssuBrown.opacity(0.6), style:  StrokeStyle(lineWidth: 2, dash: [3, 5]))
-                                            .overlay {
-                                                if rhythmIndex < jangdan.rhythms.count {
-                                                    jangdan.rhythms[rhythmIndex].iconImage
-                                                }
-                                            }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                JungGanBoView(
+                    rhythmList: .constant(jangdan.rhythms),
+                    jangdanBeat: .constant(jangdan.beat),
+                    jangdanSobak: .constant(jangdan.sobak)
+                )
                 .frame(width: CGFloat(jangdan.beat * 270), height: 90)
                 .padding()
                 

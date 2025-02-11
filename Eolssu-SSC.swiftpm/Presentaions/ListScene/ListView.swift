@@ -25,7 +25,7 @@ struct ListView: View {
                 VStack {
                     switch selectedSegment {
                     case .learning:
-                        LearningListView()
+                        LearningView()
                     case .creating:
                         CreatingView()
                     }

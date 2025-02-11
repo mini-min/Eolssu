@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct LearningListView: View {
+struct LearningView: View {
     
     @State private var selectedJangdan = 0
     @State private var isDetailViewVisible = false
@@ -78,5 +78,5 @@ struct LearningListView: View {
 }
 
 #Preview {
-    LearningListView()
+    LearningView()
 }
