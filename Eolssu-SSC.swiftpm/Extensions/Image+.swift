@@ -8,6 +8,9 @@ enum ImageName: String {
     case janggu = "img_janggu"
     case janggu2 = "img_janggu2"
     case janggu3 = "img_janggu3"
+    case guideLeft = "img_guide_left"
+    case guideRight = "img_guide_right"
+    case guideBoth = "img_guide_both"
     
     // Icon Assets
     case list = "icn_go_to_list"
@@ -34,6 +37,9 @@ extension Image {
     static let janggu = Image(ImageName.janggu.rawValue)
     static let janggu2 = Image(ImageName.janggu2.rawValue)
     static let janggu3 = Image(ImageName.janggu3.rawValue)
+    static let guideLeft = Image(ImageName.guideLeft.rawValue)
+    static let guideRight = Image(ImageName.guideRight.rawValue)
+    static let guideBoth = Image(ImageName.guideBoth.rawValue)
     
     static let list = Image(ImageName.list.rawValue)
 }

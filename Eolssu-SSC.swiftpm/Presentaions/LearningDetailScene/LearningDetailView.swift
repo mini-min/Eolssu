@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct LearningDetailView: View {
+    
+    @State private var isShowPlayAlert: Bool = false
     @Binding var isDetailViewVisible: Bool
     var jangdan: JangDanType
     
@@ -33,13 +35,13 @@ struct LearningDetailView: View {
                         Button(action: {
                             // 노래가 재생
                         }, label: {
-                            Image(systemName: "hearingdevice.ear")
+                            Image(systemName: "play")
                         })
                         
                         Button(action: {
-                            // 연주가 시작
+                            isShowPlayAlert = true
                         }, label: {
-                            Image(systemName: "play")
+                            Image(systemName: "questionmark.circle")
                         })
                     }
                 }
@@ -69,6 +71,10 @@ struct LearningDetailView: View {
                 
                 PerformJangguView()
                     .padding([.leading, .trailing], 30)
+            }
+            
+            if isShowPlayAlert {
+                HowToPlayAlert(isPresentedAlert: $isShowPlayAlert)
             }
         }
     }
