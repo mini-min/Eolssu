@@ -57,6 +57,7 @@ extension CreatingControlView {
         
         currentBeatIndex = 0
         let interval = Double(60) / Double(bpm)
+        SoundManager.shared.playSound(name: droppedRhythms[0].sound)
         
         Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { timer in
             if !isPlaying || currentBeatIndex >= droppedRhythms.count {
