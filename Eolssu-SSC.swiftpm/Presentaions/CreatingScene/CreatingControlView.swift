@@ -64,8 +64,10 @@ extension CreatingControlView {
                 stopPlaying()
                 return
             }
-            SoundManager.shared.playSound(name: droppedRhythms[currentBeatIndex].sound)
             currentBeatIndex += 1
+            if currentBeatIndex != droppedRhythms.count {
+                SoundManager.shared.playSound(name: droppedRhythms[currentBeatIndex].sound)
+            }
         }
         
     }
