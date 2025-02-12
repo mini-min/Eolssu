@@ -1,12 +1,17 @@
 import SwiftUI
 
-enum RhythmType: String, CaseIterable {
+enum RhythmType: String, CaseIterable, Codable, Transferable {
+    
     case dung = "Dung"
     case kung = "Kung"
     case deok = "Deok"
     case gideok = "Gideok"
     case deoreo = "Deoreoreoreo"
     case rest = ""
+    
+    static var transferRepresentation: some TransferRepresentation {
+        CodableRepresentation(contentType: .plainText)
+    }
     
     var letterImage: Image {
         switch self {
