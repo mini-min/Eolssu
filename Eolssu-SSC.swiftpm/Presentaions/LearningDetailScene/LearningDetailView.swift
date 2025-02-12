@@ -3,6 +3,9 @@ import SwiftUI
 struct LearningDetailView: View {
     
     @State private var isShowPlayAlert: Bool = false
+    @State private var isPlaying: Bool = false
+    @State private var currentBeatIndex: Int = 0
+    
     @Binding var isDetailViewVisible: Bool
     var jangdan: JangDanType
     
@@ -53,7 +56,9 @@ struct LearningDetailView: View {
                 JungGanBoView(
                     rhythmList: .constant(jangdan.rhythms),
                     jangdanBeat: .constant(jangdan.beat),
-                    jangdanSobak: .constant(jangdan.sobak)
+                    jangdanSobak: .constant(jangdan.sobak),
+                    isPlaying: $isPlaying,
+                    currentBeatIndex: $currentBeatIndex
                 )
                 .frame(width: CGFloat(jangdan.beat * 270), height: 90)
                 .padding()

@@ -5,6 +5,8 @@ struct JungGanBoView: View {
     @Binding var rhythmList : [RhythmType]
     @Binding var jangdanBeat: Int
     @Binding var jangdanSobak: Int
+    @Binding var isPlaying: Bool
+    @Binding var currentBeatIndex: Int
     
     var body: some View {
         HStack(spacing: 0) {
@@ -20,9 +22,16 @@ struct JungGanBoView: View {
                                 
                                 Rectangle()
                                     .stroke(Color.eolssuBrown.opacity(0.6), style:  StrokeStyle(lineWidth: 2, dash: [3, 5]))
+                                    .background(Color.white)
                                     .overlay {
                                         if rhythmIndex < rhythmList.count {
-                                            rhythmList[rhythmIndex].iconImage
+                                            if isPlaying && rhythmIndex != currentBeatIndex {
+                                                rhythmList[rhythmIndex].iconImage
+                                                    .renderingMode(.template)
+                                                    .foregroundColor(.eolssuGray2)
+                                            } else {
+                                                rhythmList[rhythmIndex].iconImage
+                                            }
                                         }
                                     }
                             }
@@ -40,6 +49,8 @@ struct JungGanBoView: View {
     JungGanBoView(
         rhythmList: .constant(jajinmori.rhythms), 
         jangdanBeat: .constant(jajinmori.beat), 
-        jangdanSobak: .constant(jajinmori.sobak)
+        jangdanSobak: .constant(jajinmori.sobak),
+        isPlaying: .constant(true),
+        currentBeatIndex: .constant(0)
     )
 }

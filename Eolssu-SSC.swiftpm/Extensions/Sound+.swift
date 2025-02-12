@@ -8,4 +8,5 @@ enum SoundName: String {
     case dung = "dung"
     case gideok = "gideok"
     case deoreo = "deoreo"
+    case rest = "rest"
 }

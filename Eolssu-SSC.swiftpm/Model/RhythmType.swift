@@ -20,7 +20,7 @@ enum RhythmType: String, CaseIterable, Codable, Transferable {
         case .deok: Image(ImageName.deokLetter.rawValue)
         case .gideok: Image(ImageName.gideokLetter.rawValue)
         case .deoreo: Image(ImageName.deoreoLetter.rawValue)
-        case .rest: Image("")
+        case .rest: Image("eolssu_rest")
         }
     }
     
@@ -59,7 +59,7 @@ enum RhythmType: String, CaseIterable, Codable, Transferable {
         case .deok: SoundName.deok.rawValue
         case .gideok: SoundName.gideok.rawValue
         case .deoreo: SoundName.deoreo.rawValue
-        case .rest: ""
+        case .rest: SoundName.rest.rawValue
         }
     }
 }
