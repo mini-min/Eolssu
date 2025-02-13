@@ -22,7 +22,11 @@ struct JungGanBoView: View {
                                 
                                 Rectangle()
                                     .stroke(Color.eolssuBrown.opacity(0.6), style:  StrokeStyle(lineWidth: 2, dash: [3, 5]))
-                                    .background(Color.white)
+                                    .background(
+                                        isPlaying && rhythmList[currentBeatIndex] == .rest && rhythmIndex == currentBeatIndex
+                                        ? Color.eolssuPink.opacity(0.5) 
+                                        : Color.white
+                                    )
                                     .overlay {
                                         if rhythmIndex < rhythmList.count {
                                             if isPlaying && rhythmIndex != currentBeatIndex {

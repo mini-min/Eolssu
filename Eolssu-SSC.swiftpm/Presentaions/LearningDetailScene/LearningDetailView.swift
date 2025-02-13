@@ -19,6 +19,7 @@ struct LearningDetailView: View {
                 HStack {
                     Button(action: {
                         withAnimation(.spring()) {
+                            stopPlaying()
                             isDetailViewVisible = false 
                         }
                     }, label: {
@@ -35,11 +36,9 @@ struct LearningDetailView: View {
                     Spacer()
                     
                     HStack(spacing: 20) {
-                        Button(action: {
-                            // 노래가 재생
-                        }, label: {
-                            Image(systemName: "play")
-                        })
+                        Button(action: playButtonTapped) {
+                            Image(systemName: isPlaying ? "stop.fill" : "play.fill")
+                        }
                         
                         Button(action: {
                             isShowPlayAlert = true
@@ -85,6 +84,43 @@ struct LearningDetailView: View {
     }
 }
 
+extension LearningDetailView {
+    func playButtonTapped() {
+        if isPlaying {
+            stopPlaying()
+        } else {
+            startPlaying()
+        }
+    }
+    
+    func startPlaying() {
+        isPlaying = true
+        
+        currentBeatIndex = 0
+        let interval = Double(60) / Double(jangdan.tempo.bpm)
+        SoundManager.shared.playSound(name: jangdan.rhythms[0].sound)
+        
+        Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { timer in
+            if !isPlaying {
+                timer.invalidate() 
+                return
+            }
+            if currentBeatIndex >= jangdan.rhythms.count - 1 {
+                currentBeatIndex = 0 
+                SoundManager.shared.playSound(name: jangdan.rhythms[currentBeatIndex].sound) 
+            } else {
+                currentBeatIndex += 1 
+                SoundManager.shared.playSound(name: jangdan.rhythms[currentBeatIndex].sound)
+            }
+        }
+    }
+    
+    func stopPlaying() {
+        isPlaying = false
+    }
+}
+
+
 #Preview {
-    LearningDetailView(isDetailViewVisible: .constant(true), jangdan: .jungjungmori)
+    LearningDetailView(isDetailViewVisible: .constant(true), jangdan: .hwimori)
 }

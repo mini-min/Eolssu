@@ -45,7 +45,7 @@ struct CreatingControlView: View {
 
 extension CreatingControlView {
     func jangdanPlayButtonTapped() {
-        if isPlaying  {
+        if isPlaying {
             stopPlaying()
         } else {
             startPlaying()
@@ -60,13 +60,12 @@ extension CreatingControlView {
         SoundManager.shared.playSound(name: droppedRhythms[0].sound)
         
         Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { timer in
-            if !isPlaying || currentBeatIndex >= droppedRhythms.count {
+            if !isPlaying || currentBeatIndex >= droppedRhythms.count - 1 {
                 timer.invalidate()
                 stopPlaying()
                 return
-            }
-            currentBeatIndex += 1
-            if currentBeatIndex != droppedRhythms.count {
+            } else {
+                currentBeatIndex += 1 
                 SoundManager.shared.playSound(name: droppedRhythms[currentBeatIndex].sound)
             }
         }

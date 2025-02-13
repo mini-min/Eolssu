@@ -26,4 +26,14 @@ enum Tempo: String {
         case .slow: .slowText
         }
     }
+    
+    var bpm: Int {
+        switch self {
+        case .veryFast: return 160
+        case .fast: return 140
+        case .slightlyFast: return 120
+        case .moderate: return 100
+        case .slow: return 80
+        }
+    }
 }
