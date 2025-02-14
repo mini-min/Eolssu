@@ -29,7 +29,8 @@ let package = Package(
             supportedInterfaceOrientations: [
                 .landscapeRight,
                 .landscapeLeft
-            ]
+            ],
+            appCategory: .education
         )
     ],
     targets: [

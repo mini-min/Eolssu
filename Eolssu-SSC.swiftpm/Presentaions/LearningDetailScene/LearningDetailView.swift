@@ -7,6 +7,7 @@ struct LearningDetailView: View {
     @State private var isPlaying: Bool = false
     @State private var currentBeatIndex: Int = 0
     @State private var metronomePlayer: AVAudioPlayer?
+    @State private var repeatValue: Int = 1
     @State private var countdownValue: Int? = nil
     
     @Binding var isDetailViewVisible: Bool
@@ -17,7 +18,7 @@ struct LearningDetailView: View {
             Color.eolssuBackground
                 .ignoresSafeArea()
             
-            VStack(spacing: 30) {
+            VStack(spacing: 50) {
                 
                 HStack {
                     Button(action: {
@@ -65,19 +66,22 @@ struct LearningDetailView: View {
                 .frame(width: CGFloat(jangdan.beat * 270), height: 90)
                 .padding()
                 
-                HStack(alignment: .bottom) {
-                    ForEach(jangdan.rhythms, id: \.self) { rhythm in
-                        if rhythm == .rest { Spacer() }
-                        rhythm.letterImage
-                            .renderingMode(.template)
-                            .foregroundColor(.eolssuGray2)
-                            .scaledToFit()
+                VStack(spacing: 100) {
+                    Text("Click the letters in time with the beat to play Jang-Dan!")
+                        .font(.myFont(size: 32))
+                        .foregroundStyle(Color.eolssuBrown)
+                    
+                    HStack(alignment: .center, spacing: 130) {
+                        ForEach(RhythmType.allCases.dropLast(), id: \.self) { rhythm in
+                            Button(action: {
+                                SoundManager.shared.playSound(name: rhythm.sound)
+                            }) {
+                                rhythm.letterImage
+                                    .scaleEffect(1.8)
+                            }
+                        }
                     }
                 }
-                .frame(width: CGFloat(jangdan.beat * 290), height: 150)
-                
-                PerformJangguView()
-                    .padding([.leading, .trailing], 30)
             }
             
             if let countdownValue {
@@ -154,28 +158,34 @@ extension LearningDetailView {
         
         let interval = Double(60) / Double(jangdan.tempo.bpm)
         
-        SoundManager.shared.playSound(name: jangdan.rhythms[0].sound)
+        if repeatValue % 2 != 0 {
+            SoundManager.shared.playSound(name: jangdan.rhythms[0].sound)
+        }
         
         Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { timer in
             if !isPlaying {
                 timer.invalidate()
                 return
             }
-            
-            // metronomePlayer?.play()
-            
+                        
             if currentBeatIndex >= jangdan.rhythms.count - 1 {
                 currentBeatIndex = 0
-                SoundManager.shared.playSound(name: jangdan.rhythms[currentBeatIndex].sound)
+                repeatValue += 1
+                if repeatValue % 2 != 0 {
+                    SoundManager.shared.playSound(name: jangdan.rhythms[currentBeatIndex].sound)
+                }
             } else {
                 currentBeatIndex += 1
-                SoundManager.shared.playSound(name: jangdan.rhythms[currentBeatIndex].sound)
+                if repeatValue % 2 != 0 {
+                    SoundManager.shared.playSound(name: jangdan.rhythms[currentBeatIndex].sound)
+                }
             }
         }
     }
     
     func stopPlaying() {
         isPlaying = false
+        repeatValue = 0
         // metronomePlayer?.stop()
     }
 }
