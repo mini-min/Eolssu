@@ -113,7 +113,7 @@ struct LearningDetailView: View {
             }
             
             if isShowPlayAlert {
-                HowToPlayAlert(isPresentedAlert: $isShowPlayAlert)
+                HowToPlayAlert(isDetailViewVisible: $isDetailViewVisible)
             }
         }
         .onDisappear {
@@ -167,6 +167,10 @@ extension LearningDetailView {
             if currentBeatIndex >= jangdan.rhythms.count - 1 {
                 currentBeatIndex = 0
                 repeatValue += 1
+                if repeatValue > 10 { 
+                    stopPlaying() 
+                    isShowPlayAlert = true
+                }
                 if repeatValue % 2 != 0 {
                     SoundManager.shared.playSound(name: jangdan.rhythms[currentBeatIndex].sound)
                 }

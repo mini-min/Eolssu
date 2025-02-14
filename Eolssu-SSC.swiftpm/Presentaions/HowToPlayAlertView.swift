@@ -3,7 +3,7 @@ import SwiftUI
 struct HowToPlayAlert: View {
     
     @State private var selectedImageStatus: Int = 0
-    @Binding var isPresentedAlert: Bool
+    @Binding var isDetailViewVisible: Bool
     
     var body: some View {
         ZStack {
@@ -73,8 +73,7 @@ struct HowToPlayAlert: View {
                 Spacer().frame(height: 50)
                 
                 Button(action: {
-                    isPresentedAlert.toggle()
-                    SoundManager.shared.playSound(name: SoundName.eolssu.rawValue)
+                    isDetailViewVisible.toggle()
                 }) {
                     Text("Let’s Play Jang-Dan")
                         .font(.myFont(size: 20))
@@ -93,5 +92,5 @@ struct HowToPlayAlert: View {
 }
 
 #Preview {
-    HowToPlayAlert(isPresentedAlert: .constant(true))
+    HowToPlayAlert(isDetailViewVisible: .constant(true))
 }
