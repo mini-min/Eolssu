@@ -9,3 +9,9 @@ extension Font {
         return .custom(FontName.goverment.rawValue, size: size)
     }
 }
+
+extension UIFont {
+    @nonobjc class func myFont(size: CGFloat) -> UIFont {
+        return UIFont(name: FontName.goverment.rawValue, size: size)!
+    }
+}

@@ -31,10 +31,9 @@ struct InitialView: View {
                 Color.eolssuBackground
                     .ignoresSafeArea()
                 
-                if screenState.rawValue >= 1 {
-                    Image.janggu
-                        .offset(x: 250, y: 50)
-                }
+                Image.janggu
+                    .offset(x: 250, y: 50)
+                    .opacity(screenState.rawValue >= 1 ? 1 : 0)
                 
                 VStack {
                     HStack(alignment: .bottom) {
@@ -66,7 +65,7 @@ struct InitialView: View {
                     VStack(spacing: 35) {
                         Text("“Jang-Dan” means rhythm or beat in Korean traditional music.")
                             .padding(.top, 75)
-                          
+                        
                         if screenState.rawValue >= 1 {
                             Text("“Janggu” is a traditional Korean drum for playing “Jang-Dan” looks like an hourglass.")
                         }
@@ -77,8 +76,7 @@ struct InitialView: View {
                     }
                     .font(.myFont(size: 26))
                     .foregroundStyle(Color.eolssuBrown)
-                    .padding(.bottom, 70)
-                    
+                    .padding(.bottom, 80)
                     
                     if screenState == .final {
                         HStack(spacing: 50) {
@@ -101,25 +99,24 @@ struct InitialView: View {
                             }
                         }
                     }
-
+                    
                     Text("Tap on the screen")
                         .font(.myFont(size: 40))
                         .foregroundStyle(Color.eolssuPink)
                         .opacity(screenState == .final ? 0 : 1)
                 }
                 .padding()
-                .onTapGesture {
-                    withAnimation(.easeInOut(duration: 0.5)) {
-                        if let nextState = screenState.next { 
-                            screenState = nextState 
-                            
-                            if let sound = screenState.sound?.rawValue {
-                                SoundManager.shared.playSound(name: sound)
-                            }
+            }
+            .onTapGesture {
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    if let nextState = screenState.next {
+                        screenState = nextState
+                        
+                        if let sound = screenState.sound?.rawValue {
+                            SoundManager.shared.playSound(name: sound)
                         }
                     }
                 }
-
             }
         }
     }

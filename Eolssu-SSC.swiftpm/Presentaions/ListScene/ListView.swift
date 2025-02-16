@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ListView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var selectedSegment: Segment
     
     enum Segment: Int, CaseIterable {
@@ -32,14 +33,28 @@ struct ListView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden()
         .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    self.presentationMode.wrappedValue.dismiss()
+                } label: {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("Back")
+                    }
+                    .foregroundStyle(Color.white)
+                    .font(.myFont(size: 18))
+                }
+            }
+            
             ToolbarItem(placement: .principal) {
                 Picker("Options", selection: $selectedSegment) {
                     Text("Learning").tag(Segment.learning)
                     Text("Creating").tag(Segment.creating)
                 }
                 .pickerStyle(SegmentedPickerStyle())
-                .frame(maxWidth: 250)
+                .frame(maxWidth: 275, maxHeight: 50)
             }
         }
     }
