@@ -3,6 +3,7 @@ import SwiftUI
 struct LearningDetailView: View {
     
     @State private var isShowPlayAlert: Bool = false
+    @State private var isShowJungganboAlert: Bool = false
     @State private var isPlaying: Bool = false
     @State private var currentBeatIndex: Int = 0
     @State private var currentRhythm: RhythmType = .rest
@@ -17,7 +18,7 @@ struct LearningDetailView: View {
             Color.eolssuBackground
                 .ignoresSafeArea()
             
-            VStack(spacing: 50) {
+            VStack(spacing: 20) {
                 
                 HStack {
                     Button(action: {
@@ -25,9 +26,7 @@ struct LearningDetailView: View {
                             stopPlaying()
                             isDetailViewVisible = false 
                         }
-                    }, label: {
-                        Image.list
-                    })
+                    }, label: { Image.list })
                     
                     Spacer()
                     
@@ -44,7 +43,7 @@ struct LearningDetailView: View {
                         }
                         
                         Button(action: {
-                            isShowPlayAlert = true
+                            isShowJungganboAlert = true
                         }, label: {
                             Image(systemName: "questionmark.circle")
                         })
@@ -54,6 +53,7 @@ struct LearningDetailView: View {
                 .font(.myFont(size: 24))
                 .padding(30)
                 
+                Spacer()
                 
                 JungGanBoView(
                     rhythmList: .constant(jangdan.rhythms),
@@ -63,9 +63,9 @@ struct LearningDetailView: View {
                     currentBeatIndex: $currentBeatIndex
                 )
                 .frame(width: CGFloat(jangdan.beat * 270), height: 90)
-                .padding()
+                .padding(.bottom, 50)
                 
-                VStack(spacing: 100) {
+                VStack(spacing: 50) {
                     ZStack {
                         if repeatValue % 2 != 0 {
                             withAnimation {
@@ -91,29 +91,26 @@ struct LearningDetailView: View {
                     )
                     .background(Color.white)
                     .cornerRadius(20)
+                    .frame(height: 400)
                 }
-                .padding(.bottom, 80)
+                Spacer()
             }
             
-            if let countdownValue {
-                ZStack {
-                    Color.black.opacity(0.4)
-                    VStack(spacing: 50) {
-                        Text("\(countdownValue)")
-                            .font(.myFont(size: 200))
-                            .foregroundColor(.white)
-                            .transition(.opacity.combined(with: .scale)) 
-                        
-                        Text("Playback will start shortly.\nListen to the Jang-Dan twice, then try playing along to the beat yourself!")
-                            .font(.myFont(size: 24))
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.center)
-                    }
-                }
+            if let countdownValue { 
+                CountdownView(countdownValue: countdownValue) 
             }
             
             if isShowPlayAlert {
-                HowToPlayAlert(isDetailViewVisible: $isDetailViewVisible)
+                HowToPlayAlert(
+                    isDetailViewVisible: $isDetailViewVisible,
+                    jangdan: jangdan
+                )
+            }
+            if isShowJungganboAlert {
+                JungGanBoAlert(
+                    isShowJungganboAlert: $isShowJungganboAlert,
+                    jangdan: jangdan
+                )
             }
         }
         .onDisappear {

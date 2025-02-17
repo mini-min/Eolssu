@@ -33,13 +33,13 @@ struct PerformRhythmView: View {
                         Text("Tap!")
                             .font(.myFont(size: 32))
                             .foregroundStyle(Color.eolssuPink)
-                            .opacity(repeatValue % 2 == 0 && currentRhythm == rhythm ? 1 : 0)
+                            .opacity(repeatValue % 2 == 0 && repeatValue < 6 && currentRhythm == rhythm ? 1 : 0)
+                            .animation(.easeInOut(duration: 0.3), value: repeatValue)
                     }
-                    
                 }
             }
+            .padding(.horizontal, 100)
         }
-        .padding()
     }
 }
 
