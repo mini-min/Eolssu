@@ -21,7 +21,7 @@ struct JungGanBoAlert: View {
                 .frame(width: 800, height: 80)
                 .opacity(0.2)
                 
-                VStack(spacing: 35) {
+                VStack(spacing: 50) {
                     Text("What is Jeongganbo?")
                         .font(.myFont(size: 32))
                         .foregroundStyle(Color.eolssuBrown)
@@ -37,7 +37,7 @@ struct JungGanBoAlert: View {
                         .foregroundStyle(Color.eolssuBrown)
                         .padding(.bottom, 10)
                         .multilineTextAlignment(.center)
-                        .lineSpacing(20)
+                        .lineSpacing(25)
                     
                     Button(action: { isShowJungganboAlert.toggle() }) {
                         Text("Let's Learning Jang-Dan!")

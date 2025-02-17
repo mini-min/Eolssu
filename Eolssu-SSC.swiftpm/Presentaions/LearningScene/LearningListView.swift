@@ -80,6 +80,7 @@ struct LearningView: View {
                     isSpeaking.toggle()
                 } label: {
                     Image(systemName: isSpeaking ? "speaker.wave.1.fill" : "speaker.slash.fill")
+                        .font(.myFont(size: 20))
                         .foregroundStyle(Color.white)
                         .padding()
                 }
