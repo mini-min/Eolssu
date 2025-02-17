@@ -168,12 +168,12 @@ extension LearningDetailView {
                     stopPlaying() 
                     isShowPlayAlert = true
                 }
-                if repeatValue % 2 != 0 {
+                if repeatValue % 2 != 0 && jangdan.rhythms[currentBeatIndex] != .rest {
                     SoundManager.shared.playSound(name: jangdan.rhythms[currentBeatIndex].sound)
                 }
             } else {
                 currentBeatIndex += 1
-                if repeatValue % 2 != 0 {
+                if repeatValue % 2 != 0 && jangdan.rhythms[currentBeatIndex] != .rest {
                     SoundManager.shared.playSound(name: jangdan.rhythms[currentBeatIndex].sound)
                 }
             }

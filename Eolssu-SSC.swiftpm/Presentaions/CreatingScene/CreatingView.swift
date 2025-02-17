@@ -105,7 +105,9 @@ private extension CreatingView {
             if !isPlaying || currentBeatIndex >= droppedRhythms.count - 1 {
                 if isRepeating {
                     currentBeatIndex = 0
-                    SoundManager.shared.playSound(name: droppedRhythms[currentBeatIndex].sound)
+                    if droppedRhythms[currentBeatIndex] != .rest {
+                        SoundManager.shared.playSound(name: droppedRhythms[currentBeatIndex].sound)
+                    }
                 } else {
                     timer.invalidate()
                     stopPlaying()
@@ -113,12 +115,13 @@ private extension CreatingView {
                 }
             } else {
                 currentBeatIndex += 1
-                SoundManager.shared.playSound(name: droppedRhythms[currentBeatIndex].sound)
+                if droppedRhythms[currentBeatIndex] != .rest {
+                    SoundManager.shared.playSound(name: droppedRhythms[currentBeatIndex].sound)
+                }
             }
         }
         
     }
-
     
     func stopPlaying() {
         isPlaying = false
