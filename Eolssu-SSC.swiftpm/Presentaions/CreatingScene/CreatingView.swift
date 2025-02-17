@@ -18,7 +18,7 @@ struct CreatingView: View {
         HStack {
             RhythmListView(rhythms: rhythms)
             
-            VStack(spacing: 30) {
+            VStack(spacing: 20) {
                 JungGanBoView(
                     rhythmList: $droppedRhythms,
                     jangdanBeat: .constant(4),
@@ -28,7 +28,6 @@ struct CreatingView: View {
                 )
                 .frame(height: 80)
                 .padding()
-                
                 
                 VStack(alignment: .center) {
                     VStack(spacing: 0) {
@@ -46,7 +45,6 @@ struct CreatingView: View {
                             }
                         }
                     }
-                    .padding(.bottom, 10)
                     
                     CreatingControlView(
                         bpm: $bpm,
@@ -59,7 +57,7 @@ struct CreatingView: View {
                 .padding()
             }
         }
-        .padding()
+        .padding(.horizontal, 20)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: repeatButtonTapped) {
@@ -78,6 +76,8 @@ struct CreatingView: View {
                 }
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .padding(.top, 15)
     }
 }
 
