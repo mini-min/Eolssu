@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct FontManager {
+final class FontManager {
     static func registerFont(name: String, fileExtension: String) {
         guard let fontURL = Bundle.main.url(forResource: name, withExtension: fileExtension),
               let fontDataProvider = CGDataProvider(url: fontURL as CFURL),

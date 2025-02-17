@@ -12,10 +12,10 @@ struct LearningCard: View {
             
             VStack(alignment: .leading, spacing: 40) {
                 HStack(alignment: .bottom, spacing: 25) {
-                    EolssuComponentFactory.shared.makeEollsuText(
-                        jangdan.korTitle,
-                        jangdan.korTitle.character(at: 1).map { String($0) } ?? "",
-                        with: .eolssuPink
+                    EolssuText(
+                        originalText: jangdan.korTitle,
+                        targetText: jangdan.korTitle.character(at: 1).map { String($0) } ?? "",
+                        targetColor: .eolssuPink
                     ).font(.myFont(size: 90))
                     
                     Text(jangdan.engTitle)

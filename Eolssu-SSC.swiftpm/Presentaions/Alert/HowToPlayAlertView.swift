@@ -35,12 +35,8 @@ struct HowToPlayAlert: View {
                     isDetailViewVisible.toggle()
                 }) {
                     Text("Learning other Jang-Dan")
-                        .font(.myFont(size: 20))
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.eolssuBrown)
-                        .cornerRadius(15)
                 }
+                .eolssuButtonStyle()
             }
             .padding(.vertical, 50)
             .frame(width: 920)

@@ -41,12 +41,8 @@ struct JungGanBoAlert: View {
                     
                     Button(action: { isShowJungganboAlert.toggle() }) {
                         Text("Let's Learning Jang-Dan!")
-                            .font(.myFont(size: 20))
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color.eolssuBrown)
-                            .cornerRadius(15)
                     }
+                    .eolssuButtonStyle()
                 }
             }
             .padding(.vertical, 50)

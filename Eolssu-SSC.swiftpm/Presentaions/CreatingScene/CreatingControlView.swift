@@ -6,7 +6,7 @@ struct CreatingControlView: View {
     @Binding var droppedRhythms: [RhythmType]
     
     var body: some View {
-        HStack(spacing: 130) {
+        HStack(spacing: 130) {            
             VStack {
                 HStack(spacing: 30) {
                     Button(action: { bpm = max(50, bpm - 1) }) {
@@ -38,13 +38,8 @@ struct CreatingControlView: View {
             
             Button(action: resetDroppedRhythms) {
                 Label("Reset Jang-Dan", systemImage: "arrow.trianglehead.2.clockwise")
-                    .labelStyle(.titleAndIcon)
-                    .font(.myFont(size: 20))
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.eolssuBrown)
-                    .cornerRadius(15)
             }
+            .eolssuButtonStyle()
         }
     }
 }
