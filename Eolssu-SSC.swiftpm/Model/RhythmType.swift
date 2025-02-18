@@ -24,6 +24,17 @@ enum RhythmType: String, CaseIterable, Codable, Transferable {
         }
     }
     
+    var letterButtonImage: Image {
+        switch self {
+        case .dung: Image(ImageName.dungButton.rawValue)
+        case .kung: Image(ImageName.kungButton.rawValue)
+        case .deok: Image(ImageName.deokButton.rawValue)
+        case .gideok: Image(ImageName.gideokButton.rawValue)
+        case .deoreo: Image(ImageName.deoreoButton.rawValue)
+        case .rest: Image("eolssu_rest")
+        }
+    }
+    
     var iconImage: Image {
         switch self {
         case .dung: Image(ImageName.dungIcon.rawValue)

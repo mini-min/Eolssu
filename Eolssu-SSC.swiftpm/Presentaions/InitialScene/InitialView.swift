@@ -31,13 +31,13 @@ struct InitialView: View {
                 Color.eolssuBackground
                     .ignoresSafeArea()
                 
-                Image.janggu
+                Image(ImageName.janggu.rawValue)
                     .offset(x: 250, y: 50)
                     .opacity(screenState.rawValue >= 1 ? 1 : 0)
                 
                 VStack {
                     HStack(alignment: .bottom) {
-                        Image.main
+                        Image(ImageName.main.rawValue)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 300)

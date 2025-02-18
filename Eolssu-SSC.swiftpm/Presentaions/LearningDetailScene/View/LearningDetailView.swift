@@ -23,7 +23,9 @@ struct LearningDetailView: View {
                             viewModel.stopPlaying()
                             isDetailViewVisible = false 
                         }
-                    }, label: { Image.list })
+                    }, label: { 
+                        Image(ImageName.list.rawValue)
+                    })
                     
                     Spacer()
                     

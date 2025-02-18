@@ -7,7 +7,7 @@ struct LearningCard: View {
         ZStack {
             Color.eolssuBackground
             
-            Image.janggu2
+            Image(ImageName.janggu2.rawValue)
                 .offset(x: 250, y: 50)
             
             VStack(alignment: .leading, spacing: 40) {

@@ -4,13 +4,9 @@ enum ImageName: String {
     case main = "eolssu_main_logo"
     
     // Image Assets
-    case rotate = "img_rotate"
     case janggu = "img_janggu"
     case janggu2 = "img_janggu2"
     case janggu3 = "img_janggu3"
-    case guideLeft = "img_guide_left"
-    case guideRight = "img_guide_right"
-    case guideBoth = "img_guide_both"
     
     // Icon Assets
     case list = "icn_go_to_list"
@@ -21,6 +17,13 @@ enum ImageName: String {
     case deokLetter = "eolssu_deok_color"
     case gideokLetter = "eolssu_gideok_color"
     case deoreoLetter = "eolssu_deoreo_color"
+    
+    // Letter Button Assets
+    case dungButton = "btn_eolssu_dung_color"
+    case kungButton = "btn_eolssu_kung_color"
+    case deokButton = "btn_eolssu_deok_color"
+    case gideokButton = "btn_eolssu_gideok_color"
+    case deoreoButton = "btn_eolssu_deoreo_color"
     
     // icon Assets
     case dungIcon = "eolssu_dung_icon_color"

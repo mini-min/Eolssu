@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "btn_eolssu_deoreo_color.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

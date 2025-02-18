@@ -6,9 +6,9 @@ struct PerformRhythmView: View {
         
     var body: some View {
         ZStack {
-            Image.janggu3
+            Image(ImageName.janggu3.rawValue)
             
-            HStack(alignment: .bottom, spacing: 130) {
+            HStack(alignment: .bottom, spacing: 40) {
                 ForEach(RhythmType.allCases.dropLast(), id: \.self) { rhythm in
                     
                     VStack {
@@ -16,19 +16,17 @@ struct PerformRhythmView: View {
                             SoundManager.shared.playSound(name: rhythm.sound)
                         }) {
                             if repeatValue % 2 != 0 {
-                                rhythm.letterImage
+                                rhythm.letterButtonImage
                                     .renderingMode(.template)
                                     .foregroundColor(.eolssuGray2)
-                                    .scaleEffect(1.8)
                                     .contentShape(Rectangle())
                             } else {
-                                rhythm.letterImage
-                                    .scaleEffect(1.8)
+                                rhythm.letterButtonImage
                                     .contentShape(Rectangle())
                             }
                         }
                         .disabled(repeatValue % 2 != 0)
-                        .padding(.bottom, 80)
+                        .padding(.vertical, 50)
                         
                         Text("Tap!")
                             .font(.myFont(size: 32))
@@ -38,7 +36,7 @@ struct PerformRhythmView: View {
                     }
                 }
             }
-            .padding(.horizontal, 100)
+            .padding(.horizontal, 50)
         }
     }
 }
