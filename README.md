@@ -1,7 +1,8 @@
 # Eolssu (얼쑤)
 > Learn easily and create enjoyably traditional Korean rhythms, Jang-Dan.
+<img width="830" alt="Screenshot 2025-03-28 at 8 12 20 AM" src="https://github.com/user-attachments/assets/9f9d11ba-47b0-466f-9c0b-2ecf9335e54b" />
 
-- WWDC25 Swift Student Challenge Submission🍎
+- WWDC25 Swift Student Challenge Winner🍎
 - Period: 2025.01.31 - 2025.02.18
 - Development Environment : iOS 16.0+ macOS 13.0+ Swift Playground
 
